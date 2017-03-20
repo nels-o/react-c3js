@@ -77,6 +77,14 @@ class C3Chart extends React.Component {
         this.unloadData();
     }
 
+    // If there are regions in the config, update them.
+    // If there are regions, and the config specifies none then delete the existing regions.
+    if (config.regions) {
+        this.chart.regions(config.regions);
+    } else if (this.chart.regions && !config.regions){
+        this.chart.regions([]);
+    }
+
     this.loadNewData(config.data);
   }
 
